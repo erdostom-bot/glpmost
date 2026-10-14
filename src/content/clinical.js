@@ -19,11 +19,12 @@ export const legal = {
 
 export const chart = {
   title: 'Átlagos testtömegváltozás a vizsgálatok végén',
-  lead: 'A meghatározott vizsgálatok elsődleges végpontjánál mért átlagos testtömegváltozás, a vizsgált legmagasabb adagnál. A placebo-csoport is életmódi tanácsot kapott.',
+  lead: 'Az elsődleges végpontnál mért átlagos testtömegváltozás a vizsgált legmagasabb adagnál, kezdőértékhez képest. Csak azok a vizsgálatok szerepelnek, amelyek százalékos értéket közölnek. A placebo-csoport is életmódi tanácsot kapott.',
   caution:
-    'A számok különböző vizsgálatokból származnak (eltérő populáció, időtartam és adag), ezért a hatóanyagok közvetlenül nem hasonlíthatók össze. 2-es típusú cukorbetegségben a fogyás általában kisebb.',
+    'A számok különböző vizsgálatokból származnak (eltérő populáció, időtartam és adag), ezért a hatóanyagok közvetlenül nem hasonlíthatók össze. 2-es típusú cukorbetegségben a fogyás általában kisebb. A dulaglutid vizsgálatai kilogrammban közlik az eredményt és nem testsúlykezelésre szólnak, ezért nem szerepelnek az ábrán; adataik lentebb találhatók.',
   drugLabel: 'Kezelés',
   placeboLabel: 'Placebo',
+  refLegend: 'Placebo / összehasonlító',
 }
 
 export const studiesSection = {

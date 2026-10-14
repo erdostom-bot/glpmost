@@ -1,4 +1,4 @@
-import { compounds, meta, sources } from '../data/clinical.js'
+import { compounds, meta, pipeline, sources } from '../data/clinical.js'
 import { disclaimerBottom, legal, pageHero, pricesSection, studiesSection } from '../content/clinical.js'
 import WeightChart from '../components/WeightChart.jsx'
 import { Card, CheckList, Disclaimer, Eyebrow, Heading, Lead, PageHero, Section } from '../components/ui.jsx'
@@ -43,7 +43,7 @@ function Brand({ b }) {
           <ul className="space-y-2 text-[15px]">
             {b.prices.map((p) => (
               <li key={p.label} className="flex flex-col gap-0.5 sm:flex-row sm:justify-between">
-                <span className="text-ink-soft">{p.label}</span>
+                <span className="text-ink-soft">{p.label}{p.unit ? ` · ${p.unit}` : ''}</span>
                 <span>
                   <strong className="tabular-nums">{priceText(p)}</strong>
                   <Badge ok={p.verified} />
@@ -110,6 +110,20 @@ function Compound({ c, tone }) {
       <h3 className="mb-2 mt-14 text-2xl font-medium">{studiesSection.title}</h3>
       <p className="mb-6 max-w-prose text-ink-soft">{studiesSection.lead}</p>
       <div className="grid gap-5 lg:grid-cols-2">{c.studies.map((s) => <Study key={s.id} s={s} />)}</div>
+      {c.relatedEvidence?.length > 0 && (
+        <div className="mt-10">
+          <h4 className="text-xl font-medium">További fontos adatok</h4>
+          <ul className="mt-4 grid gap-4 lg:grid-cols-2">
+            {c.relatedEvidence.map((e) => (
+              <li key={e.id} className="rounded-2xl border border-line bg-white p-5 text-[15px]">
+                <p className="font-semibold">{e.acronym} <span className="font-normal text-ink-soft">· {e.journal}, {e.year}</span></p>
+                <p className="mt-2 text-ink-soft">{e.noteHu}</p>
+                {e.doi && <a href={`https://doi.org/${e.doi}`} target="_blank" rel="noreferrer" className="mt-2 inline-block text-sm font-semibold text-sage underline underline-offset-4">DOI: {e.doi}</a>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </Section>
   )
 }
@@ -145,6 +159,24 @@ export default function Clinical() {
       )}
 
       {compounds.map((c, i) => <Compound key={c.id} c={c} tone={i % 2 === 0 ? 'paper' : 'sand'} />)}
+
+      {pipeline?.length > 0 && (
+        <Section tone="sand" id="fejlesztes-alatt">
+          <Eyebrow>Hamarosan?</Eyebrow>
+          <Heading>Új és fejlesztés alatt álló készítmények</Heading>
+          <Lead className="mt-4">Az alábbiak státusza gyorsan változik; magyarországi elérhetőségük külön ellenőrzendő.</Lead>
+          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+            {pipeline.map((p) => (
+              <Card key={p.id} className="!p-6">
+                <h4 className="font-display text-xl">{p.name}</h4>
+                <p className="mt-2 text-[15px]"><strong>Státusz: </strong><span className="text-ink-soft">{p.status}</span></p>
+                <p className="mt-1 text-[15px]"><strong>Magyarországon: </strong><span className="text-ink-soft">{p.huStatus}</span></p>
+                <p className="mt-3 text-sm text-ink-soft">{p.noteHu}</p>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      )}
 
       <Section tone="white" id="forrasok">
         <Heading>Források</Heading>

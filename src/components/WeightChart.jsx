@@ -6,14 +6,17 @@ const GRAY = '#A9A59C'
 const MAX = 25
 const TICKS = [0, 5, 10, 15, 20, 25]
 
-const fmt = (n) => `−${Math.abs(n).toLocaleString('hu-HU', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`
+const fmt = (n) => `${n < 0 ? '−' : '+'}${Math.abs(n).toLocaleString('hu-HU', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`
 
 function pickArm(study) {
-  const arms = study.weightChange?.arms ?? []
+  const wc = study.weightChange
+  if (!wc || wc.baselineWeek != null) return null
+  const arms = (wc.arms ?? []).filter((a) => a.drugPct != null)
   if (!arms.length) return null
-  const top = arms.reduce((a, b) => (Math.abs(b.drugPct) > Math.abs(a.drugPct) ? b : a))
-  const placebo = top.placeboPct ?? arms.find((a) => a.placeboPct != null)?.placeboPct ?? null
-  return { label: top.label, drugPct: top.drugPct, placeboPct: placebo }
+  const top = arms.reduce((x, y) => (Math.abs(y.drugPct) > Math.abs(x.drugPct) ? y : x))
+  const ref = top.placeboPct ?? top.comparatorPct ?? null
+  const refLabel = top.placeboPct != null ? chartText.placeboLabel : top.comparatorLabel ?? null
+  return { label: top.label, drugPct: top.drugPct, refPct: ref, refLabel }
 }
 
 function chartRows(compounds) {
@@ -24,13 +27,13 @@ function chartRows(compounds) {
       rows: c.studies
         .map((s) => ({ study: s, arm: pickArm(s) }))
         .filter((r) => r.arm)
-        .map(({ study, arm }) => ({ id: study.id, acronym: study.acronym, week: study.weightChange.endpointWeek, population: study.population, n: study.n, arm: arm.label, drugPct: arm.drugPct, placeboPct: arm.placeboPct })),
+        .map(({ study, arm }) => ({ id: study.id, acronym: study.acronym, week: study.weightChange.endpointWeek, population: study.population, n: study.n, ...arm })),
     }))
     .filter((g) => g.rows.length)
 }
 
 function Bar({ value, color, label }) {
-  const w = Math.min(Math.abs(value) / MAX, 1) * 100
+  const w = value > 0 ? 0 : Math.min(Math.abs(value) / MAX, 1) * 100
   return (
     <div className="flex items-center" style={{ height: 16 }}>
       <div
@@ -49,7 +52,7 @@ function Row({ r }) {
     <div className="group relative grid items-center gap-x-4 gap-y-1 py-2.5 outline-none sm:grid-cols-[11rem_1fr]" tabIndex={0}>
       <div>
         <p className="text-sm font-semibold text-ink">{r.acronym}</p>
-        <p className="text-xs text-ink-soft">{r.week} hét · {r.arm}</p>
+        <p className="text-xs text-ink-soft">{r.week} hét · {r.label}</p>
       </div>
       <div className="relative" style={{ marginRight: '3.2rem' }}>
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -57,14 +60,14 @@ function Row({ r }) {
         </div>
         <div className="relative space-y-1">
           <Bar value={r.drugPct} color={TEAL} label={`${r.acronym}, ${chartText.drugLabel}: ${fmt(r.drugPct)}`} />
-          {r.placeboPct != null && <Bar value={r.placeboPct} color={GRAY} label={`${r.acronym}, ${chartText.placeboLabel}: ${fmt(r.placeboPct)}`} />}
+          {r.refPct != null && <Bar value={r.refPct} color={GRAY} label={`${r.acronym}, ${r.refLabel}: ${fmt(r.refPct)}`} />}
         </div>
       </div>
       <div className="pointer-events-none absolute left-0 top-full z-10 hidden w-72 rounded-2xl border border-line bg-white p-4 text-sm shadow-lg group-hover:block group-focus:block sm:left-44">
         <p className="font-semibold">{r.acronym} · {r.week} hét</p>
         <p className="mt-1 text-ink-soft">{r.population}{r.n ? ` · N = ${r.n.toLocaleString('hu-HU')}` : ''}</p>
-        <p className="mt-2"><span className="mr-1.5 inline-block h-0.5 w-3 align-middle" style={{ background: TEAL }} /><strong>{fmt(r.drugPct)}</strong> <span className="text-ink-soft">{chartText.drugLabel} ({r.arm})</span></p>
-        {r.placeboPct != null && <p><span className="mr-1.5 inline-block h-0.5 w-3 align-middle" style={{ background: GRAY }} /><strong>{fmt(r.placeboPct)}</strong> <span className="text-ink-soft">{chartText.placeboLabel}</span></p>}
+        <p className="mt-2"><span className="mr-1.5 inline-block h-0.5 w-3 align-middle" style={{ background: TEAL }} /><strong>{fmt(r.drugPct)}</strong> <span className="text-ink-soft">{chartText.drugLabel} ({r.label})</span></p>
+        {r.refPct != null && <p><span className="mr-1.5 inline-block h-0.5 w-3 align-middle" style={{ background: GRAY }} /><strong>{fmt(r.refPct)}</strong> <span className="text-ink-soft">{r.refLabel}</span></p>}
       </div>
     </div>
   )
@@ -80,7 +83,7 @@ export default function WeightChart({ compounds }) {
       </figcaption>
       <div className="mb-6 flex gap-5 text-sm text-ink-soft" aria-hidden="true">
         <span className="flex items-center gap-2"><span className="h-3 w-5 rounded-[3px]" style={{ background: TEAL }} />{chartText.drugLabel}</span>
-        <span className="flex items-center gap-2"><span className="h-3 w-5 rounded-[3px]" style={{ background: GRAY }} />{chartText.placeboLabel}</span>
+        <span className="flex items-center gap-2"><span className="h-3 w-5 rounded-[3px]" style={{ background: GRAY }} />{chartText.refLegend}</span>
       </div>
       <div className="space-y-8">
         {groups.map((g) => (
@@ -104,14 +107,14 @@ export default function WeightChart({ compounds }) {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[34rem] text-left text-sm">
             <thead className="text-ink-soft">
-              <tr><th className="py-2 pr-4">Hatóanyag</th><th className="pr-4">Vizsgálat</th><th className="pr-4">Populáció</th><th className="pr-4">Hét</th><th className="pr-4">Kezelés</th><th>Placebo</th></tr>
+              <tr><th className="py-2 pr-4">Hatóanyag</th><th className="pr-4">Vizsgálat</th><th className="pr-4">Populáció</th><th className="pr-4">Hét</th><th className="pr-4">Kezelés</th><th>Placebo / összehasonlító</th></tr>
             </thead>
             <tbody>
               {groups.flatMap((g) => g.rows.map((r) => (
                 <tr key={`${g.id}-${r.id}`} className="border-t border-line align-top">
                   <td className="py-2 pr-4">{g.name}</td><td className="pr-4">{r.acronym}</td><td className="pr-4">{r.population}</td><td className="pr-4">{r.week}</td>
-                  <td className="pr-4 tabular-nums">{fmt(r.drugPct)} <span className="text-ink-soft">({r.arm})</span></td>
-                  <td className="tabular-nums">{r.placeboPct != null ? fmt(r.placeboPct) : '–'}</td>
+                  <td className="pr-4 tabular-nums">{fmt(r.drugPct)} <span className="text-ink-soft">({r.label})</span></td>
+                  <td className="tabular-nums">{r.refPct != null ? `${fmt(r.refPct)} (${r.refLabel})` : '–'}</td>
                 </tr>
               )))}
             </tbody>

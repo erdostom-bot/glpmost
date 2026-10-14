@@ -28,8 +28,8 @@ try {
     for (const [name, path] of pages) {
       await page.goto(base + path, { waitUntil: 'networkidle' })
       await page.evaluate(() => document.fonts.ready)
-      await page.screenshot({ path: `docs/screenshots/${name}-${w}.png`, fullPage: true })
-      console.log(`${name}-${w}.png`)
+      await page.screenshot({ path: `docs/screenshots/${name}-${w}.jpg`, type: 'jpeg', quality: 82, fullPage: true })
+      console.log(`${name}-${w}.jpg`)
     }
     await ctx.close()
   }
