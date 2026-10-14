@@ -1,0 +1,159 @@
+/* Alap (default) tokenek – a [data-design] blokkok ezeket írják felül. */
+:root {
+  --c-paper: 251 248 243;
+  --c-sand: 242 235 225;
+  --c-card: 255 255 255;
+  --c-ink: 42 40 48;
+  --c-ink-soft: 91 89 99;
+  --c-sage: 47 93 90;
+  --c-sage-dark: 36 72 70;
+  --c-sage-tint: 228 237 233;
+  --c-clay: 197 139 121;
+  --c-clay-dark: 168 111 94;
+  --c-clay-tint: 245 230 223;
+  --c-line: 230 222 210;
+  --r-2xl: 1rem;
+  --r-3xl: 1.5rem;
+  --r-full: 9999px;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --chart-drug: #1F7F78;
+  --chart-ref: #A9A59C;
+}
+
+/* Design-változatok tokenjei. A slug a <html data-design="…"> attribútumba kerül (DesignContext). */
+
+/* Gn8X0M-2tAbH */
+[data-design='grafit'] {
+  --c-paper: 18 20 23;
+  --c-sand: 26 29 34;
+  --c-card: 31 35 41;
+  --c-ink: 242 243 240;
+  --c-ink-soft: 174 179 173;
+  --c-sage: 200 245 97;
+  --c-sage-dark: 178 224 74;
+  --c-sage-tint: 42 58 20;
+  --c-clay: 255 122 89;
+  --c-clay-dark: 255 154 128;
+  --c-clay-tint: 58 34 25;
+  --c-line: 46 51 58;
+  --r-2xl: 0px;
+  --r-3xl: 0px;
+  --r-full: 0px;
+  --font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --chart-drug: #C8F561;
+  --chart-ref: #6B7280;
+}
+[data-design='grafit'] body {
+  background-image: linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+[data-design='grafit'] h1, [data-design='grafit'] h2 { letter-spacing: -0.03em; text-transform: uppercase; }
+
+/* pB6fPAlcpE_b */
+[data-design='pasztell'] {
+  --c-paper: 253 246 255;
+  --c-sand: 243 232 255;
+  --c-card: 255 255 255;
+  --c-ink: 59 46 74;
+  --c-ink-soft: 110 98 128;
+  --c-sage: 109 74 255;
+  --c-sage-dark: 86 55 214;
+  --c-sage-tint: 233 226 255;
+  --c-clay: 255 138 101;
+  --c-clay-dark: 196 78 42;
+  --c-clay-tint: 255 228 218;
+  --c-line: 230 220 242;
+  --r-2xl: 1.75rem;
+  --r-3xl: 2.5rem;
+  --r-full: 9999px;
+  --font-display: 'Nunito Variable', ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Nunito Variable', ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --chart-drug: #6D4AFF;
+  --chart-ref: #C9BFDA;
+}
+[data-design='pasztell'] h1, [data-design='pasztell'] h2, [data-design='pasztell'] h3 { font-weight: 800; letter-spacing: -0.01em; }
+[data-design='pasztell'] body {
+  background-image: radial-gradient(60rem 30rem at 110% -10%, rgb(255 228 218 / 0.9), transparent 60%), radial-gradient(50rem 30rem at -10% 20%, rgb(233 226 255 / 0.9), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Z_XFJQPs_m_m */
+[data-design='folyoirat'] {
+  --c-paper: 247 244 236;
+  --c-sand: 239 234 224;
+  --c-card: 247 244 236;
+  --c-ink: 20 20 20;
+  --c-ink-soft: 74 74 74;
+  --c-sage: 20 20 20;
+  --c-sage-dark: 0 0 0;
+  --c-sage-tint: 232 228 218;
+  --c-clay: 184 50 31;
+  --c-clay-dark: 147 40 26;
+  --c-clay-tint: 243 218 213;
+  --c-line: 20 20 20;
+  --r-2xl: 0px;
+  --r-3xl: 0px;
+  --r-full: 0px;
+  --font-display: 'Playfair Display Variable', ui-serif, Georgia, serif;
+  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --chart-drug: #141414;
+  --chart-ref: #B8321F;
+}
+[data-design='folyoirat'] h1 { font-weight: 500; letter-spacing: -0.02em; }
+[data-design='folyoirat'] h2, [data-design='folyoirat'] h3 { font-weight: 500; }
+
+/* wmfmmh09WA6h */
+[data-design='hullam'] {
+  --c-paper: 242 250 251;
+  --c-sand: 223 241 244;
+  --c-card: 255 255 255;
+  --c-ink: 11 42 51;
+  --c-ink-soft: 63 95 104;
+  --c-sage: 14 110 126;
+  --c-sage-dark: 10 84 97;
+  --c-sage-tint: 212 238 241;
+  --c-clay: 244 162 97;
+  --c-clay-dark: 176 96 32;
+  --c-clay-tint: 253 235 217;
+  --c-line: 201 227 231;
+  --r-2xl: 1.5rem;
+  --r-3xl: 2rem;
+  --r-full: 9999px;
+  --font-display: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --chart-drug: #0E6E7E;
+  --chart-ref: #9FC3C9;
+}
+[data-design='hullam'] h1, [data-design='hullam'] h2 { font-weight: 700; letter-spacing: -0.025em; }
+[data-design='hullam'] body { background-image: linear-gradient(180deg, rgb(223 241 244) 0, rgb(242 250 251) 40rem); background-attachment: fixed; }
+
+/* o6TF_-qxVrMX */
+[data-design='terrakotta'] {
+  --c-paper: 251 241 230;
+  --c-sand: 243 223 201;
+  --c-card: 255 248 239;
+  --c-ink: 58 31 27;
+  --c-ink-soft: 107 75 69;
+  --c-sage: 193 80 47;
+  --c-sage-dark: 158 62 34;
+  --c-sage-tint: 246 217 204;
+  --c-clay: 91 42 79;
+  --c-clay-dark: 67 32 59;
+  --c-clay-tint: 233 216 228;
+  --c-line: 228 205 184;
+  --r-2xl: 0.5rem;
+  --r-3xl: 0.75rem;
+  --r-full: 0.5rem;
+  --font-display: 'Roboto Slab Variable', ui-serif, Georgia, serif;
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --chart-drug: #C1502F;
+  --chart-ref: #C9B4A3;
+}
+[data-design='terrakotta'] h1, [data-design='terrakotta'] h2 { font-weight: 600; }
+.terrakotta-stripe {
+  background-image: repeating-linear-gradient(135deg, rgb(193 80 47) 0 14px, rgb(91 42 79) 14px 28px, rgb(243 223 201) 28px 42px);
+}

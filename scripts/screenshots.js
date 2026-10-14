@@ -21,7 +21,7 @@ const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'previe
 await new Promise((r) => setTimeout(r, 2500))
 mkdirSync('docs/screenshots', { recursive: true })
 
-const browser = await chromium.launch({ args: ['--no-sandbox'] })
+const browser = await chromium.launch({ executablePath: process.env.CHROME_BIN || undefined, args: ['--no-sandbox'] })
 try {
   for (const w of widths) {
     const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: w < 600 ? 2 : 1 })

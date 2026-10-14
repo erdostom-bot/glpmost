@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { site } from '../content/site.js'
+import { Link, useDesign } from '../designs/DesignContext.jsx'
 
 export function Container({ className = '', children }) {
   return <div className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>{children}</div>
@@ -9,7 +9,7 @@ const tones = {
   paper: 'bg-paper',
   sand: 'bg-sand',
   sage: 'bg-sage text-paper',
-  white: 'bg-white',
+  white: 'bg-card',
 }
 
 export function Section({ tone = 'paper', id, className = '', children }) {
@@ -21,11 +21,8 @@ export function Section({ tone = 'paper', id, className = '', children }) {
 }
 
 export function Eyebrow({ children, light = false }) {
-  return (
-    <p className={`mb-3 text-sm font-semibold uppercase tracking-[0.14em] ${light ? 'text-clay-tint' : 'text-clay-dark'}`}>
-      {children}
-    </p>
-  )
+  const { design } = useDesign()
+  return <p className={`mb-3 ${light ? design.cls.eyebrowLight : design.cls.eyebrow}`}>{children}</p>
 }
 
 export function Heading({ as: Tag = 'h2', className = '', children }) {
@@ -38,23 +35,31 @@ export function Lead({ className = '', children }) {
 }
 
 const buttonBase =
-  'inline-flex min-h-[52px] items-center justify-center rounded-full px-7 text-base font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-clay/40'
-const buttonStyles = {
-  primary: 'bg-sage text-paper hover:bg-sage-dark',
-  light: 'bg-paper text-sage hover:bg-white',
-  outline: 'border border-sage/40 text-sage hover:bg-sage-tint',
-}
+  'inline-flex min-h-[52px] items-center justify-center px-7 text-base font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-clay/40'
 
 export function Button({ to, variant = 'primary', className = '', children, ...rest }) {
+  const { design } = useDesign()
+  const b = design.cls.button
   return (
-    <Link to={to} className={`${buttonBase} ${buttonStyles[variant]} ${className}`} {...rest}>
+    <Link to={to} className={`${buttonBase} ${b.base} ${b[variant]} ${className}`} {...rest}>
       {children}
     </Link>
   )
 }
 
 export function Card({ className = '', children }) {
-  return <div className={`rounded-3xl border border-line bg-white p-7 sm:p-8 ${className}`}>{children}</div>
+  const { design } = useDesign()
+  return <div className={`${design.cls.card} p-7 sm:p-8 ${className}`}>{children}</div>
+}
+
+export function TextLink({ to, className = '', children }) {
+  const { design } = useDesign()
+  return <Link className={`${design.cls.link} ${className}`} to={to}>{children}</Link>
+}
+
+export function StepNumber({ n }) {
+  const { design } = useDesign()
+  return <span className={design.cls.stepNum}>{n}</span>
 }
 
 export function Check({ tone = 'sage' }) {
@@ -109,8 +114,9 @@ export function Disclaimer({ children, className = '' }) {
 }
 
 export function Accordion({ items }) {
+  const { design } = useDesign()
   return (
-    <div className="divide-y divide-line rounded-3xl border border-line bg-white">
+    <div className={`divide-y divide-line ${design.cls.card} !pt-0`}>
       {items.map((item) => (
         <details key={item.q} className="group px-6 py-5 sm:px-8">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-medium marker:hidden [&::-webkit-details-marker]:hidden">
@@ -125,12 +131,14 @@ export function Accordion({ items }) {
 }
 
 export function PageHero({ eyebrow, title, lead, children }) {
+  const { design } = useDesign()
+  const masthead = design.header === 'masthead'
   return (
-    <section className="bg-sand">
-      <Container className="py-16 sm:py-24">
+    <section className={masthead ? 'border-b border-ink bg-paper' : 'bg-sand'}>
+      <Container className={`py-16 sm:py-24 ${masthead ? 'text-center' : ''}`}>
         <Eyebrow>{eyebrow}</Eyebrow>
-        <Heading as="h1" className="max-w-3xl">{title}</Heading>
-        {lead && <Lead className="mt-6">{lead}</Lead>}
+        <Heading as="h1" className={masthead ? 'mx-auto max-w-4xl' : 'max-w-3xl'}>{title}</Heading>
+        {lead && <Lead className={`mt-6 ${masthead ? 'mx-auto' : ''}`}>{lead}</Lead>}
         {children}
       </Container>
     </section>

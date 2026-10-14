@@ -1,5 +1,6 @@
 @import '@fontsource-variable/fraunces/index.css';
 @import '@fontsource-variable/figtree/index.css';
+@import './designs/designs.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,5 +8,6 @@
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { @apply bg-paper font-sans text-ink antialiased text-[17px] leading-relaxed; }
-  h1, h2, h3 { @apply font-display text-ink; font-variation-settings: 'SOFT' 50, 'WONK' 0; }
+  h1, h2, h3 { @apply font-display text-ink; }
+  html:not([data-design]) h1, html:not([data-design]) h2, html:not([data-design]) h3 { font-variation-settings: 'SOFT' 50, 'WONK' 0; }
 }
