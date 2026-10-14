@@ -17,7 +17,7 @@ export default function Process() {
               <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-sage font-display text-xl text-paper sm:h-14 sm:w-14 sm:text-2xl">{i + 1}</span>
               <h2 className="text-2xl font-medium sm:text-3xl">{s.title}</h2>
               <p className="mt-1 text-sm font-medium text-clay-dark">
-                {s.optional && 'Opcionális · '}{s.time}
+                {s.time}
               </p>
               <div className="mt-4 space-y-3 text-ink-soft">
                 {s.text.map((p) => <p key={p}>{p}</p>)}
@@ -40,9 +40,10 @@ export default function Process() {
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="flex flex-col justify-center rounded-3xl bg-sage p-7 text-paper sm:p-8">
             <p className="font-display text-6xl font-medium sm:text-7xl">{huf(pricing.priceHuf)} <span className="text-3xl">Ft</span></p>
-            <p className="mt-2 text-paper/80">alkalmanként, páciensenként</p>
+            <p className="mt-2 text-paper/80">{pricing.priceUnit}</p>
           </div>
           <Card>
+            <p className="mb-5 text-sm text-ink-soft">{pricing.priceNote}</p>
             <h3 className="text-2xl font-medium">{pricing.whatIsASession.title}</h3>
             <div className="mt-5"><CheckList items={pricing.whatIsASession.items} /></div>
             <p className="mt-5 text-sm text-ink-soft">{pricing.whatIsASession.note}</p>
@@ -60,7 +61,11 @@ export default function Process() {
         <div className="mx-auto max-w-3xl rounded-3xl bg-sage-tint p-8 text-center sm:p-12">
           <Heading>{surveyPlaceholder.title}</Heading>
           <p className="mx-auto mt-4 max-w-prose text-lg text-ink-soft">{surveyPlaceholder.text}</p>
-          <Button to="/folyamat#kerdoiv" className="mt-7" aria-disabled="true">{surveyPlaceholder.button}</Button>
+          <label className="mx-auto mt-6 flex max-w-prose items-start gap-3 text-left text-sm text-ink-soft">
+            <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-[#2F5D5A]" />
+            <span>{surveyPlaceholder.consent} <Link className="font-semibold text-sage underline underline-offset-4" to="/adatkezeles">Adatkezelési tájékoztató</Link></span>
+          </label>
+          <Button to="/folyamat#kerdoiv" className="mt-6" aria-disabled="true">{surveyPlaceholder.button}</Button>
           <DraftNote>{surveyPlaceholder.draftNote}</DraftNote>
         </div>
         <div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-line bg-white p-7">

@@ -12,6 +12,7 @@ export const legal = {
   items: [
     'Az itt említett készítmények mindegyike vényköteles gyógyszer: kizárólag orvosi felírás alapján, gyógyszertárban váltható ki.',
     'Az oldalon szereplő márkanevek és árak tájékoztató, tényközlő jellegűek – nem reklám, és nem ösztönöznek egy adott készítmény használatára.',
+    'A GLPMost gyógyszert nem forgalmaz és nem értékesít, gyártóval vagy forgalmazóval nem áll kapcsolatban. [Szerkesztői ellenőrzés: csak akkor igaz, ha tényleg így van.]',
     'Az árak és a támogatási státusz időről időre változnak. Az „ellenőrizendő” jelzésű adatok még nem megerősítettek.',
     'A kockázatokról és mellékhatásokról olvasd el a betegtájékoztatót, vagy kérdezd meg kezelőorvosodat vagy gyógyszerészedet.',
   ],
@@ -34,8 +35,9 @@ export const studiesSection = {
 
 export const pricesSection = {
   title: 'Magyarországi elérhetőség és árak',
+  notApproved: 'Testsúlycsökkentésre nem engedélyezett – ebben a szolgáltatásban nem kerül felírásra.',
   lead: 'A készítmények forgalmazási és támogatási státusza, valamint a gyógyszertári árak tájékoztató jellegű adatok.',
-  verified: 'ellenőrzött',
+  verified: 'forrással',
   unverified: 'ellenőrizendő',
 }
 

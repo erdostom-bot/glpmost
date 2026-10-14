@@ -12,7 +12,7 @@ export const steps = [
     title: 'Online orvosi kérdőív',
     time: 'kb. 10 perc',
     text: [
-      'Kitöltesz egy részletes egészségügyi kérdőívet: testmagasság és -súly, korábbi betegségek, szedett gyógyszerek, terhesség-tervezés, étkezési szokások.',
+      'Kitöltesz egy részletes egészségügyi kérdőívet: születési dátum (a szolgáltatás 18 éves kortól érhető el), testmagasság és -súly, korábbi betegségek, szedett gyógyszerek, terhesség-tervezés, étkezési szokások. A kezelés megkezdéséhez TAJ-számra és személyazonosításra is szükség lesz.',
       'Ez a biztonságod alapja – ezért kérjük, minden kérdésre őszintén válaszolj. Az adataid bizalmasak.',
     ],
   },
@@ -31,12 +31,11 @@ export const steps = [
   },
   {
     id: 'konzultacio',
-    title: 'Konzultáció – ha szükséges vagy szeretnéd',
+    title: 'Videós konzultáció',
     time: 'kb. 20–30 perc',
-    optional: true,
     text: [
-      'Az orvos az adataid alapján egy személyes vagy videós beszélgetést javasolhat, vagy te is kérheted. Itt kérdezhetsz, és közösen átnézitek a céljaidat, a lehetséges kockázatokat és az alternatívákat.',
-      'Ha az adatok egyértelműek, a konzultáció elmaradhat – de bármikor kérheted.',
+      'Az első orvosi döntés előtt mindig beszéltek: egy videós (vagy személyes) konzultáción az orvos azonosít, átnézi veled az adataidat, a céljaidat, a kockázatokat és az alternatívákat, és válaszol a kérdéseidre.',
+      'A későbbi kontrollok egy része elvégezhető írásban is.',
     ],
   },
   {
@@ -44,7 +43,7 @@ export const steps = [
     title: 'Orvosi döntés és recept',
     time: 'az adatok beérkezése után',
     text: [
-      'Az orvos eldönti, hogy a GLP-1 alapú kezelés számodra biztonságos és indokolt-e. Ha igen, elektronikus receptet ír, amelyet bármelyik magyarországi gyógyszertárban kiválthatsz.',
+      'Az orvos eldönti, hogy a GLP-1 alapú kezelés számodra biztonságos és indokolt-e. Ha igen, elektronikus receptet ír (EESZT), amelyet bármelyik magyarországi gyógyszertárban kiválthatsz, ha a készítmény elérhető – az elmúlt években időnként készlethiány volt.',
       'Ha a kezelés nem javasolt, azt is megmagyarázza, és megbeszélitek a következő lépéseket. A recept felírása nem garantált – és nem is cél.',
     ],
   },
@@ -63,7 +62,8 @@ export const pricing = {
   eyebrow: 'Díjak',
   title: 'Átlátható díj, rejtett költség nélkül',
   priceHuf: 20000,
-  priceUnit: 'Ft / páciens / alkalom',
+  priceUnit: 'Ft / alkalom (bruttó)',
+  priceNote: 'A díj az orvosi munkára vonatkozik, és akkor is jár, ha az orvos nem javasolja a kezelést. [Áfa-státusz: ellenőrizendő]',
   lead: 'Alkalmanként egy fix díjat fizetsz. Nincs előfizetés, nincs kötelezettség a folytatásra.',
   // TODO(tamas): pontosítani, mi számít „alkalomnak”. Jelenlegi feltételezés alább.
   whatIsASession: {
@@ -87,12 +87,13 @@ export const surveyPlaceholder = {
   title: 'Kérdőív',
   text: 'Az online kérdőív és a leletfeltöltés fejlesztés alatt áll. Hamarosan itt tudod megkezdeni.',
   button: 'Értesítést kérek (hamarosan)',
+  consent: 'Hozzájárulok, hogy a GLPMost a kérdőív indulásáról e-mailben értesítsen. A hozzájárulást bármikor visszavonhatom.',
   draftNote: 'Placeholder: a kérdőív és a feltöltő űrlap a következő fázisban készül el.',
 }
 
 export const dataNotice = {
   title: 'Az adataid védelméről',
-  text: 'A kérdőívben és a leletekben megadott egészségügyi adatok különleges személyes adatok. Titkosított kapcsolaton keresztül kezeljük őket, kizárólag az orvos és az ellátásban közreműködő munkatársak férnek hozzájuk, és csak a kezelésed céljára használjuk őket. Hozzájárulásodat bármikor visszavonhatod.',
+  text: 'A kérdőívben és a leletekben megadott egészségügyi adatok különleges személyes adatok. Titkosított kapcsolaton keresztül kezeljük őket, kizárólag az orvos és az ellátásban közreműködő, titoktartásra kötelezett munkatársak férnek hozzájuk, és csak az ellátásod céljára használjuk őket. Orvosi dokumentációként a törvény szerint 30 évig meg kell őriznünk őket.',
   link: { to: '/adatkezeles', label: 'Teljes adatkezelési tájékoztató' },
 }
 
@@ -103,7 +104,7 @@ export const faq = [
   },
   {
     q: 'Kell személyesen megjelennem?',
-    a: 'A legtöbb lépés online elvégezhető. A konzultáció – ha az orvos szükségesnek látja vagy te kéred – személyesen vagy videón is lehetséges.',
+    a: 'Az első orvosi döntés előtt videós konzultáció mindig van; személyes megjelenés csak akkor, ha az orvos szükségesnek látja vagy te kéred.',
   },
   {
     q: 'Mennyi ideig kell szedni?',
@@ -115,6 +116,18 @@ export const faq = [
   },
   {
     q: 'Terhes vagyok, vagy babát tervezek. Szóba jöhet a kezelés?',
-    a: 'Terhesség és szoptatás alatt a kezelés nem alkalmazható, tervezett terhesség előtt pedig az előírás szerint le kell állítani. Ezt a kérdőívben külön jelezd, az orvos pedig részletesen megbeszéli veled.',
+    a: 'Terhesség és szoptatás alatt a kezelés nem alkalmazható, tervezett terhesség előtt a készítménytől függően legalább 1–2 hónappal le kell állítani (tirzepatid: 1, szemaglutid: 2 hónap). Ezt a kérdőívben külön jelezd, az orvos pedig részletesen megbeszéli veled.',
+  },
+  {
+    q: '18 év alatt igénybe vehetem?',
+    a: 'Nem, a szolgáltatás kizárólag 18 éves kortól érhető el.',
+  },
+  {
+    q: 'Mi történik, ha nem kapok receptet?',
+    a: 'A díj az orvosi értékelésért jár, ilyenkor is. Az orvos elmondja, mit javasol helyette.',
+  },
+  {
+    q: 'Hogyan tehetek panaszt?',
+    a: 'Panaszodat szóban vagy írásban közölheted velünk; az elérhetőségeket és a további lehetőségeket (betegjogi képviselő, békéltető testület) az Impresszum oldalon találod.',
   },
 ]

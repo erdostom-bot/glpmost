@@ -128,7 +128,7 @@ export const compounds = [
         safetyHu:
           'Leggyakoribb mellékhatás a hányinger és hasmenés, többnyire átmeneti, enyhe-közepes. Emésztőrendszeri panaszok miatt a szemaglutid-csoport 4,5%-a, a placebocsoport 0,8%-a hagyta abba a kezelést.',
         summaryHu:
-          'A STEP 1 a Wegovy alapvizsgálata: közel 2000, cukorbetegséggel nem élő, elhízott felnőtt 68 hét alatt átlagosan testtömege 15%-át adta le a gyógyszer plusz életmódváltás mellett, szemben az életmódváltás önmagában elért 2,4%-ával. ' +
+          'A STEP 1 a szemaglutid 2,4 mg alapvizsgálata: közel 2000, cukorbetegséggel nem élő, elhízott felnőtt 68 hét alatt átlagosan testtömege 15%-át adta le a gyógyszer plusz életmódváltás mellett, szemben az életmódváltás önmagában elért 2,4%-ával. ' +
           'A résztvevők fele legalább 15%-ot fogyott. A hányinger és hasmenés gyakori volt, de ritkán vezetett a kezelés feladásához.',
         weightChange: { endpointWeek: 68, arms: [{ label: 'szemaglutid 2,4 mg', drugPct: -14.9, placeboPct: -2.4 }] },
         doi: '10.1056/NEJMoa2032183',
@@ -343,7 +343,7 @@ export const compounds = [
           'A 56. héten a liraglutid-csoport átlagosan 8,4 kg-ot, a placebocsoport 2,8 kg-ot fogyott (különbség −5,6 kg; 95% CI −6,0 – −5,1). Legalább 5% fogyás: 63,2% vs 27,1%; több mint 10%: 33,1% vs 10,6%.',
         safetyHu: 'Leggyakoribb mellékhatás az enyhe-közepes hányinger és hasmenés. Súlyos nemkívánatos esemény: 6,2% vs 5,0%.',
         summaryHu:
-          'A SCALE a Saxenda alapvizsgálata, több mint 3700 résztvevővel, akik négyötöde nő volt, átlagosan 45 évesek. A napi 3,0 mg liraglutid egy év alatt kb. 8 kg fogyást hozott az életmódváltás 3 kg-jával szemben, ' +
+          'A SCALE a liraglutid 3,0 mg alapvizsgálata, több mint 3700 résztvevővel, akik négyötöde nő volt, átlagosan 45 évesek. A napi 3,0 mg liraglutid egy év alatt kb. 8 kg fogyást hozott az életmódváltás 3 kg-jával szemben, ' +
           'és a résztvevők kétharmada elérte az 5%-os fogyást. Ez szerényebb hatás, mint a későbbi heti készítményeké, de jól dokumentált.',
         weightChange: { endpointWeek: 56, unit: 'kg', arms: [{ label: 'liraglutid 3,0 mg', drugPct: -8.0, placeboPct: -2.6, drugKg: -8.4, placeboKg: -2.8 }], verified: false, note: 'A százalékos értékek (−8,0% vs −2,6%) a teljes közleményből származnak, az absztrakt kg-ban közöl; ellenőrizendő.' },
         doi: '10.1056/NEJMoa1411892',
@@ -683,7 +683,7 @@ export const compounds = [
           'Testtömegváltozás a 72. héten: −15,0% (5 mg), −19,5% (10 mg), −20,9% (15 mg) vs −3,1% (placebo). Legalább 5% fogyás: 85% / 89% / 91% vs 35%; legalább 20%: 50% (10 mg), 57% (15 mg) vs 3%.',
         safetyHu: 'Leggyakoribb mellékhatás emésztőrendszeri, többnyire enyhe-közepes, főként dózisemelés alatt. Mellékhatás miatti leállás: 4,3% / 7,1% / 6,2% vs 2,6%.',
         summaryHu:
-          'A SURMOUNT-1 a Mounjaro alapvizsgálata fogyásra: cukorbetegség nélküli, elhízott felnőttek a legnagyobb dózison 72 hét alatt átlagosan testtömegük 21%-át adták le, és több mint felük legalább 20%-ot fogyott – ' +
+          'A SURMOUNT-1 a tirzepatid alapvizsgálata fogyásra: cukorbetegség nélküli, elhízott felnőttek a legnagyobb dózison 72 hét alatt átlagosan testtömegük 21%-át adták le, és több mint felük legalább 20%-ot fogyott – ' +
           'ez a legnagyobb hatás, amit gyógyszerrel placebokontrollos vizsgálatban mértek. Az emésztőrendszeri panaszok gyakoriak, de ritkán vezettek leálláshoz.',
         weightChange: { endpointWeek: 72, arms: [{ label: 'tirzepatid 5 mg', drugPct: -15.0, placeboPct: -3.1 }, { label: 'tirzepatid 10 mg', drugPct: -19.5, placeboPct: -3.1 }, { label: 'tirzepatid 15 mg', drugPct: -20.9, placeboPct: -3.1 }] },
         doi: '10.1056/NEJMoa2206038',

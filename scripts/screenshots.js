@@ -11,6 +11,7 @@ const pages = [
   ['orvosaink', '/orvosaink'],
   ['klinikai-informaciok', '/klinikai-informaciok'],
   ['adatkezeles', '/adatkezeles'],
+  ['impresszum', '/impresszum'],
 ]
 const widths = [390, 1440]
 const port = 4199

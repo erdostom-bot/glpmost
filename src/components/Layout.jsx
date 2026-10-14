@@ -15,6 +15,7 @@ export function Wordmark({ light = false }) {
 function Header() {
   const [open, setOpen] = useState(false)
   const { pathname, hash } = useLocation()
+  const showCta = pathname !== '/klinikai-informaciok'
 
   useEffect(() => {
     if (hash) {
@@ -37,7 +38,7 @@ function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Button to={headerCta.to} className="hidden !min-h-[44px] !px-5 text-[15px] sm:inline-flex">{headerCta.label}</Button>
+          {showCta && <Button to={headerCta.to} className="hidden !min-h-[44px] !px-5 text-[15px] sm:inline-flex">{headerCta.label}</Button>}
           <button
             type="button"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-line lg:hidden"
@@ -60,7 +61,7 @@ function Header() {
                 {item.label}
               </NavLink>
             ))}
-            <Button to={headerCta.to} className="mt-3">{headerCta.label} kitöltése</Button>
+            {showCta && <Button to={headerCta.to} className="mt-3">{headerCta.label} kitöltése</Button>}
           </Container>
         </nav>
       )}
