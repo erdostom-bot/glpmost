@@ -133,9 +133,16 @@ export default function Clinical() {
         </div>
       </Section>
 
-      <Section tone="white" className="!pt-0 sm:!pt-0">
-        <WeightChart compounds={compounds} />
-      </Section>
+      {compounds.length === 0 && (
+        <Section tone="white">
+          <p className="mx-auto max-w-prose text-center text-lg text-ink-soft">A hatóanyagokra, árakra és vizsgálatokra vonatkozó adatok feltöltés alatt állnak.</p>
+        </Section>
+      )}
+      {compounds.length > 0 && (
+        <Section tone="white" className="!pt-0 sm:!pt-0">
+          <WeightChart compounds={compounds} />
+        </Section>
+      )}
 
       {compounds.map((c, i) => <Compound key={c.id} c={c} tone={i % 2 === 0 ? 'paper' : 'sand'} />)}
 
