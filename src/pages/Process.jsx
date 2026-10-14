@@ -38,10 +38,10 @@ export default function Process() {
         <Heading>{pricing.title}</Heading>
         <Lead className="mt-5">{pricing.lead}</Lead>
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-          <Card className="flex flex-col justify-center bg-sage !border-sage text-paper">
+          <div className="flex flex-col justify-center rounded-3xl bg-sage p-7 text-paper sm:p-8">
             <p className="font-display text-6xl font-medium sm:text-7xl">{huf(pricing.priceHuf)} <span className="text-3xl">Ft</span></p>
             <p className="mt-2 text-paper/80">alkalmanként, páciensenként</p>
-          </Card>
+          </div>
           <Card>
             <h3 className="text-2xl font-medium">{pricing.whatIsASession.title}</h3>
             <div className="mt-5"><CheckList items={pricing.whatIsASession.items} /></div>

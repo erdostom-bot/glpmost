@@ -127,10 +127,10 @@ export default function Clinical() {
       </PageHero>
 
       <Section className="!py-12 sm:!py-16">
-        <Card className="bg-sand !border-sand">
+        <div className="rounded-3xl bg-sand p-7 sm:p-8">
           <h2 className="text-2xl font-medium">{legal.title}</h2>
           <div className="mt-4"><CheckList items={legal.items} /></div>
-        </Card>
+        </div>
       </Section>
 
       <Section tone="white" className="!pt-0 sm:!pt-0">
