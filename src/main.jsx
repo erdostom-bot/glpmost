@@ -1,12 +1,37 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Layout from './components/Layout.jsx'
+import Home from './pages/Home.jsx'
+import Benefits from './pages/Benefits.jsx'
+import Process from './pages/Process.jsx'
+import Doctors from './pages/Doctors.jsx'
+import Clinical from './pages/Clinical.jsx'
+import Privacy from './pages/Privacy.jsx'
+import NotFound from './pages/NotFound.jsx'
 import './index.css'
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: 'elonyok', element: <Benefits /> },
+        { path: 'folyamat', element: <Process /> },
+        { path: 'orvosaink', element: <Doctors /> },
+        { path: 'klinikai-informaciok', element: <Clinical /> },
+        { path: 'adatkezeles', element: <Privacy /> },
+        { path: '*', element: <NotFound /> },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL.replace(/\/$/, '') },
+)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <main className="mx-auto max-w-prose px-6 py-24">
-      <h1 className="text-4xl">GLPMost</h1>
-      <p className="mt-4 text-ink-soft">Hamarosan.</p>
-    </main>
+    <RouterProvider router={router} />
   </StrictMode>,
 )
