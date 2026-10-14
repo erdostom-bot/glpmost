@@ -37,5 +37,5 @@ export const principles = {
 export const registrationNote = {
   label: 'Pecsétszám',
   missing: 'hamarosan feltöltjük',
-  note: 'Az orvosok pecsétszáma a működési nyilvántartásban ellenőrizhető.',
+  note: 'A pecsétszám az OKFŐ nyilvános működési nyilvántartásában ellenőrizhető: kereso.enkk.hu.',
 }

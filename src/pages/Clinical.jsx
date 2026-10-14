@@ -25,7 +25,10 @@ function availability(v) {
   return 'ellenőrizendő'
 }
 
+const approvedForWeight = (b) => /testsúly/i.test(b.indication || '')
+
 function Brand({ b }) {
+  const weightOk = approvedForWeight(b)
   return (
     <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -37,7 +40,8 @@ function Brand({ b }) {
         <div><dt className="font-semibold text-ink">Magyarországi forgalom</dt><dd className="text-ink-soft">{availability(b.marketedInHu)}{b.rx && ' · vényköteles'}</dd></div>
         <div className="sm:col-span-2"><dt className="font-semibold text-ink">Támogatás (NEAK)</dt><dd className="text-ink-soft">{b.reimbursement}</dd></div>
       </dl>
-      {b.prices?.length > 0 && (
+      {!weightOk && b.indication !== '—' && <p className="mt-4 rounded-xl bg-clay-tint/60 px-4 py-3 text-sm font-medium text-clay-dark">{pricesSection.notApproved}</p>}
+      {weightOk && b.prices?.length > 0 && (
         <div className="mt-4 border-t border-line pt-4">
           <p className="mb-2 font-semibold">Gyógyszertári ár (tájékoztató)</p>
           <ul className="space-y-2 text-[15px]">
@@ -91,9 +95,6 @@ function Compound({ c, tone }) {
       <Heading>{c.name}</Heading>
       <Lead className="mt-4">{c.summary}</Lead>
       {c.mechanism && <p className="mt-4 max-w-prose text-ink-soft">{c.mechanism}</p>}
-
-      <h3 className="mb-4 mt-12 text-2xl font-medium">{pricesSection.title}</h3>
-      <div className="grid gap-4 lg:grid-cols-2">{c.brands.map((b) => <Brand key={b.name} b={b} />)}</div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
         {c.commonSideEffects?.length > 0 && <Card className="!p-6"><h4 className="mb-4 text-xl font-medium">Gyakori mellékhatások</h4><CheckList items={c.commonSideEffects} /></Card>}
@@ -160,8 +161,22 @@ export default function Clinical() {
 
       {compounds.map((c, i) => <Compound key={c.id} c={c} tone={i % 2 === 0 ? 'paper' : 'sand'} />)}
 
+      <Section tone="sand" id="elerhetoseg-es-arak">
+        <Eyebrow>Tájékoztató adatok</Eyebrow>
+        <Heading>{pricesSection.title}</Heading>
+        <Lead className="mt-4">{pricesSection.lead}</Lead>
+        <div className="mt-8 space-y-10">
+          {compounds.map((c) => (
+            <div key={c.id}>
+              <h3 className="mb-4 text-2xl font-medium">{c.name}</h3>
+              <div className="grid gap-4 lg:grid-cols-2">{c.brands.map((b) => <Brand key={b.name} b={b} />)}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       {pipeline?.length > 0 && (
-        <Section tone="sand" id="fejlesztes-alatt">
+        <Section tone="paper" id="fejlesztes-alatt">
           <Eyebrow>Hamarosan?</Eyebrow>
           <Heading>Új és fejlesztés alatt álló készítmények</Heading>
           <Lead className="mt-4">Az alábbiak státusza gyorsan változik; magyarországi elérhetőségük külön ellenőrzendő.</Lead>

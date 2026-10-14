@@ -8,6 +8,7 @@ import Process from './pages/Process.jsx'
 import Doctors from './pages/Doctors.jsx'
 import Clinical from './pages/Clinical.jsx'
 import Privacy from './pages/Privacy.jsx'
+import Imprint from './pages/Imprint.jsx'
 import NotFound from './pages/NotFound.jsx'
 import './index.css'
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         { path: 'orvosaink', element: <Doctors /> },
         { path: 'klinikai-informaciok', element: <Clinical /> },
         { path: 'adatkezeles', element: <Privacy /> },
+        { path: 'impresszum', element: <Imprint /> },
         { path: '*', element: <NotFound /> },
       ],
     },
