@@ -1,36 +1,36 @@
-import { Link } from 'react-router-dom'
 import { how, finalCta, hero, honesty, trust, what, whoFor } from '../content/home.js'
-import { CheckList, Card, CtaBand, Disclaimer, Eyebrow, Heading, Lead, Section, Button, Container } from '../components/ui.jsx'
+import { CheckList, Card, CtaBand, Disclaimer, Eyebrow, Heading, Lead, Section, Button, Container, StepNumber, TextLink } from '../components/ui.jsx'
+import DesignGallery from '../components/DesignGallery.jsx'
+import { useDesign } from '../designs/DesignContext.jsx'
 
-function HeroArt() {
-  return (
-    <svg viewBox="0 0 480 480" className="h-full w-full" aria-hidden="true">
-      <defs>
-        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E4EDE9" />
-          <stop offset="1" stopColor="#C9DAD4" />
-        </linearGradient>
-        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#F5E6DF" />
-          <stop offset="1" stopColor="#EBCFC4" />
-        </linearGradient>
-      </defs>
-      <path d="M240 20c110 0 200 90 200 200s-70 240-200 240S40 340 40 230 130 20 240 20z" fill="url(#g1)" />
-      <circle cx="355" cy="115" r="84" fill="url(#g2)" />
-      <circle cx="170" cy="330" r="62" fill="#2F5D5A" opacity=".92" />
-      <circle cx="170" cy="330" r="30" fill="none" stroke="#FBF8F3" strokeWidth="6" />
-      <path d="M120 170c40-50 110-50 150 0" fill="none" stroke="#2F5D5A" strokeOpacity=".35" strokeWidth="3" strokeLinecap="round" />
-      <path d="M200 215c25-26 70-26 95 0" fill="none" stroke="#C58B79" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  )
-}
+function Hero() {
+  const { design } = useDesign()
+  const { Art, hero: layout } = design
 
-export default function Home() {
-  return (
-    <>
-      <section className="bg-sand">
-        <Container className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
-          <div>
+  if (layout === 'center') {
+    return (
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 -top-24 mx-auto h-[36rem] w-[36rem] opacity-70 sm:w-[48rem]" aria-hidden="true"><Art /></div>
+        <Container className="relative py-20 text-center sm:py-28">
+          <Eyebrow>{hero.eyebrow}</Eyebrow>
+          <Heading as="h1" className="mx-auto max-w-4xl">{hero.title}</Heading>
+          <Lead className="mx-auto mt-6">{hero.lead}</Lead>
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+            <Button to={hero.primary.to}>{hero.primary.label}</Button>
+            <Button to={hero.secondary.to} variant="outline">{hero.secondary.label}</Button>
+          </div>
+          <p className="mx-auto mt-6 max-w-prose text-sm text-ink-soft">{hero.note}</p>
+        </Container>
+      </section>
+    )
+  }
+
+  if (layout === 'bg') {
+    return (
+      <section className="relative overflow-hidden bg-sand">
+        <div className="pointer-events-none absolute -right-24 -top-10 h-[30rem] w-[30rem] opacity-60 sm:opacity-90 lg:right-0 lg:h-[40rem] lg:w-[40rem]" aria-hidden="true"><Art /></div>
+        <Container className="relative py-20 sm:py-28 lg:py-36">
+          <div className="max-w-3xl">
             <Eyebrow>{hero.eyebrow}</Eyebrow>
             <Heading as="h1">{hero.title}</Heading>
             <Lead className="mt-6">{hero.lead}</Lead>
@@ -40,9 +40,34 @@ export default function Home() {
             </div>
             <p className="mt-6 max-w-prose text-sm text-ink-soft">{hero.note}</p>
           </div>
-          <div className="mx-auto hidden aspect-square w-full max-w-md sm:block"><HeroArt /></div>
         </Container>
       </section>
+    )
+  }
+
+  return (
+    <section className="bg-sand">
+      <Container className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+        <div>
+          <Eyebrow>{hero.eyebrow}</Eyebrow>
+          <Heading as="h1">{hero.title}</Heading>
+          <Lead className="mt-6">{hero.lead}</Lead>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Button to={hero.primary.to}>{hero.primary.label}</Button>
+            <Button to={hero.secondary.to} variant="outline">{hero.secondary.label}</Button>
+          </div>
+          <p className="mt-6 max-w-prose text-sm text-ink-soft">{hero.note}</p>
+        </div>
+        <div className="mx-auto hidden aspect-square w-full max-w-md sm:block"><Art /></div>
+      </Container>
+    </section>
+  )
+}
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-2">
@@ -79,7 +104,7 @@ export default function Home() {
             <p className="mt-5 text-sm text-ink-soft">{whoFor.noNote}</p>
           </Card>
         </div>
-        <p className="mt-8"><Link className="font-semibold text-sage underline underline-offset-4" to={whoFor.link.to}>{whoFor.link.label} →</Link></p>
+        <p className="mt-8"><TextLink to={whoFor.link.to}>{whoFor.link.label} →</TextLink></p>
       </Section>
 
       <Section>
@@ -88,10 +113,12 @@ export default function Home() {
         <Lead className="mt-5">{how.intro}</Lead>
         <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {how.steps.map((s, i) => (
-            <li key={s.title} className="relative rounded-3xl border border-line bg-white p-7">
-              <span className="font-display text-5xl text-clay/70">{i + 1}</span>
-              <h3 className="mt-3 text-xl font-medium">{s.title}</h3>
-              <p className="mt-2 text-ink-soft">{s.text}</p>
+            <li key={s.title}>
+              <Card className="relative h-full !p-7">
+                <StepNumber n={i + 1} />
+                <h3 className="mt-3 text-xl font-medium">{s.title}</h3>
+                <p className="mt-2 text-ink-soft">{s.text}</p>
+              </Card>
             </li>
           ))}
         </ol>
@@ -117,6 +144,8 @@ export default function Home() {
           <p className="mt-5 text-lg text-ink-soft sm:text-xl">{honesty.text}</p>
         </div>
       </Section>
+
+      <DesignGallery />
 
       <CtaBand {...finalCta} />
       <Section tone="paper" className="!py-10">

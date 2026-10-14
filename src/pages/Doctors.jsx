@@ -17,7 +17,7 @@ export default function Doctors() {
       <Section>
         <div className="space-y-10">
           {doctors.map((d) => (
-            <article key={d.id} className="grid gap-8 rounded-3xl border border-line bg-white p-6 sm:p-10 md:grid-cols-[minmax(0,280px)_1fr] md:gap-12">
+            <article key={d.id} className="grid gap-8 rounded-3xl border border-line bg-card p-6 sm:p-10 md:grid-cols-[minmax(0,280px)_1fr] md:gap-12">
               <Avatar doctor={d} />
               <div>
                 <Eyebrow>{d.role}</Eyebrow>

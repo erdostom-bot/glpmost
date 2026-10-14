@@ -1,8 +1,8 @@
 import { chart as chartText } from '../content/clinical.js'
 
 // Treatment = brand teal, placebo = de-emphasis gray (emphasis form, validated with dataviz/validate_palette.js).
-const TEAL = '#1F7F78'
-const GRAY = '#A9A59C'
+const TEAL = 'var(--chart-drug)'
+const GRAY = 'var(--chart-ref)'
 const MAX = 25
 const TICKS = [0, 5, 10, 15, 20, 25]
 
@@ -63,7 +63,7 @@ function Row({ r }) {
           {r.refPct != null && <Bar value={r.refPct} color={GRAY} label={`${r.acronym}, ${r.refLabel}: ${fmt(r.refPct)}`} />}
         </div>
       </div>
-      <div className="pointer-events-none absolute left-0 top-full z-10 hidden w-72 rounded-2xl border border-line bg-white p-4 text-sm shadow-lg group-hover:block group-focus:block sm:left-44">
+      <div className="pointer-events-none absolute left-0 top-full z-10 hidden w-72 rounded-2xl border border-line bg-card p-4 text-sm shadow-lg group-hover:block group-focus:block sm:left-44">
         <p className="font-semibold">{r.acronym} · {r.week} hét</p>
         <p className="mt-1 text-ink-soft">{r.population}{r.n ? ` · N = ${r.n.toLocaleString('hu-HU')}` : ''}</p>
         <p className="mt-2"><span className="mr-1.5 inline-block h-0.5 w-3 align-middle" style={{ background: TEAL }} /><strong>{fmt(r.drugPct)}</strong> <span className="text-ink-soft">{chartText.drugLabel} ({r.label})</span></p>
@@ -102,7 +102,7 @@ export default function WeightChart({ compounds }) {
         ))}
       </div>
       <p className="mt-6 text-sm text-ink-soft">{chartText.caution}</p>
-      <details className="mt-6 rounded-2xl border border-line bg-white px-5 py-4">
+      <details className="mt-6 rounded-2xl border border-line bg-card px-5 py-4">
         <summary className="cursor-pointer font-medium">Adatok táblázatban</summary>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[34rem] text-left text-sm">

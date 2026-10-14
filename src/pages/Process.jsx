@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import { dataNotice, faq, pageHero, pricing, steps, surveyPlaceholder } from '../content/process.js'
-import { Accordion, Button, Card, CheckList, DraftNote, Eyebrow, Heading, Lead, PageHero, Section } from '../components/ui.jsx'
+import { Accordion, Button, Card, CheckList, DraftNote, Eyebrow, Heading, Lead, PageHero, Section, TextLink } from '../components/ui.jsx'
 
 const huf = (n) => n.toLocaleString('hu-HU')
 
@@ -14,7 +13,7 @@ export default function Process() {
           {steps.map((s, i) => (
             <li key={s.id} id={s.id} className="relative scroll-mt-24 pb-12 pl-16 last:pb-0 sm:pl-20">
               {i < steps.length - 1 && <span className="absolute left-[23px] top-14 h-[calc(100%-3.5rem)] w-px bg-line sm:left-[27px]" aria-hidden="true" />}
-              <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-sage font-display text-xl text-paper sm:h-14 sm:w-14 sm:text-2xl">{i + 1}</span>
+              <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-sage font-display text-xl font-bold text-paper sm:h-14 sm:w-14 sm:text-2xl">{i + 1}</span>
               <h2 className="text-2xl font-medium sm:text-3xl">{s.title}</h2>
               <p className="mt-1 text-sm font-medium text-clay-dark">
                 {s.time}
@@ -53,7 +52,7 @@ export default function Process() {
         <Card className="mt-6">
           <h3 className="text-2xl font-medium">{pricing.drugCost.title}</h3>
           <p className="mt-3 max-w-prose text-ink-soft">{pricing.drugCost.text}</p>
-          <p className="mt-4"><Link className="font-semibold text-sage underline underline-offset-4" to={pricing.drugCost.link.to}>{pricing.drugCost.link.label} →</Link></p>
+          <p className="mt-4"><TextLink to={pricing.drugCost.link.to}>{pricing.drugCost.link.label} →</TextLink></p>
         </Card>
       </Section>
 
@@ -62,17 +61,17 @@ export default function Process() {
           <Heading>{surveyPlaceholder.title}</Heading>
           <p className="mx-auto mt-4 max-w-prose text-lg text-ink-soft">{surveyPlaceholder.text}</p>
           <label className="mx-auto mt-6 flex max-w-prose items-start gap-3 text-left text-sm text-ink-soft">
-            <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-[#2F5D5A]" />
-            <span>{surveyPlaceholder.consent} <Link className="font-semibold text-sage underline underline-offset-4" to="/adatkezeles">Adatkezelési tájékoztató</Link></span>
+            <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-[rgb(var(--c-sage))]" />
+            <span>{surveyPlaceholder.consent} <TextLink to="/adatkezeles">Adatkezelési tájékoztató</TextLink></span>
           </label>
           <Button to="/folyamat#kerdoiv" className="mt-6" aria-disabled="true">{surveyPlaceholder.button}</Button>
           <DraftNote>{surveyPlaceholder.draftNote}</DraftNote>
         </div>
-        <div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-line bg-white p-7">
+        <Card className="mx-auto mt-8 max-w-3xl !p-7">
           <h3 className="text-xl font-medium">{dataNotice.title}</h3>
           <p className="mt-2 text-ink-soft">{dataNotice.text}</p>
-          <p className="mt-3"><Link className="font-semibold text-sage underline underline-offset-4" to={dataNotice.link.to}>{dataNotice.link.label} →</Link></p>
-        </div>
+          <p className="mt-3"><TextLink to={dataNotice.link.to}>{dataNotice.link.label} →</TextLink></p>
+        </Card>
       </Section>
 
       <Section tone="sand">

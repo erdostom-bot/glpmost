@@ -1,6 +1,7 @@
 import { compounds, meta, pipeline, sources } from '../data/clinical.js'
 import { disclaimerBottom, legal, pageHero, pricesSection, studiesSection } from '../content/clinical.js'
 import WeightChart from '../components/WeightChart.jsx'
+import { useDesign } from '../designs/DesignContext.jsx'
 import { Card, CheckList, Disclaimer, Eyebrow, Heading, Lead, PageHero, Section } from '../components/ui.jsx'
 
 const nf = (n) => n.toLocaleString('hu-HU')
@@ -28,9 +29,10 @@ function availability(v) {
 const approvedForWeight = (b) => /testsúly/i.test(b.indication || '')
 
 function Brand({ b }) {
+  const { design } = useDesign()
   const weightOk = approvedForWeight(b)
   return (
-    <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+    <div className={`${design.cls.card} !p-5 sm:!p-6`}>
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h4 className="font-display text-2xl">{b.name}</h4>
         <span className="text-sm text-ink-soft">{b.form}</span>
@@ -89,6 +91,7 @@ function Study({ s }) {
 }
 
 function Compound({ c, tone }) {
+  const { design } = useDesign()
   return (
     <Section id={c.id} tone={tone}>
       <Eyebrow>Hatóanyag</Eyebrow>
@@ -116,7 +119,7 @@ function Compound({ c, tone }) {
           <h4 className="text-xl font-medium">További fontos adatok</h4>
           <ul className="mt-4 grid gap-4 lg:grid-cols-2">
             {c.relatedEvidence.map((e) => (
-              <li key={e.id} className="rounded-2xl border border-line bg-white p-5 text-[15px]">
+              <li key={e.id} className={`${design.cls.card} !p-5 text-[15px]`}>
                 <p className="font-semibold">{e.acronym} <span className="font-normal text-ink-soft">· {e.journal}, {e.year}</span></p>
                 <p className="mt-2 text-ink-soft">{e.noteHu}</p>
                 {e.doi && <a href={`https://doi.org/${e.doi}`} target="_blank" rel="noreferrer" className="mt-2 inline-block text-sm font-semibold text-sage underline underline-offset-4">DOI: {e.doi}</a>}
