@@ -20,7 +20,7 @@ export const provider = {
   taxNo: '[adószám]',
   licenceNo: '[egészségügyi szolgáltató működési engedélyének száma]',
   licenceAuthority: '[kiadó hatóság – vármegyei kormányhivatal, népegészségügyi osztály]',
-  doctorName: '[felelős orvos neve]',
+  doctorName: 'Dr. Demeter Ágota',
   doctorSeal: '[pecsétszám]',
   doctorQualification: '[szakvizsga]',
   insurer: '[felelősségbiztosító]',
@@ -39,7 +39,7 @@ export const headerCta = { to: '/folyamat#kerdoiv', label: 'Kérdőív' }
 
 export const footer = {
   about:
-    'A GLPMost a(z) [Szolgáltató neve] (működési engedély száma: [szám]; felelős orvos: [név], pecsétszám: [pecsétszám]) tájékoztató és telemedicina-felülete. Célunk, hogy érthetően és őszintén segítsünk eldönteni, szóba jöhet-e nálad a GLP-1 alapú kezelés.',
+    'A GLPMost a(z) [Szolgáltató neve] (működési engedély száma: [szám]; felelős orvos: Dr. Demeter Ágota, pecsétszám: [pecsétszám]) tájékoztató és telemedicina-felülete. Célunk, hogy érthetően és őszintén segítsünk eldönteni, szóba jöhet-e nálad a GLP-1 alapú kezelés.',
   medicalDisclaimer:
     'Az oldalon található tartalom tájékoztató jellegű, nem helyettesíti az orvosi vizsgálatot, diagnózist vagy kezelést. Gyógyszert kizárólag orvos írhat fel, a javallatot és az adagolást mindig az orvos állapítja meg. A GLPMost gyógyszert nem forgalmaz és nem értékesít; a felírt készítményt a gyógyszertárban váltod ki. A kockázatokról és a mellékhatásokról olvasd el a betegtájékoztatót, vagy kérdezd meg kezelőorvosodat, gyógyszerészedet!',
   emergency:
