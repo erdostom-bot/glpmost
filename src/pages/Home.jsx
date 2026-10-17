@@ -1,5 +1,6 @@
 import { how, finalCta, hero, honesty, trust, what, whoFor } from '../content/home.js'
 import { CheckList, Card, CtaBand, Disclaimer, Eyebrow, Heading, Lead, Section, Button, Container, StepNumber, TextLink } from '../components/ui.jsx'
+import CompoundCompare from '../components/CompoundCompare.jsx'
 import DesignGallery from '../components/DesignGallery.jsx'
 import { useDesign } from '../designs/DesignContext.jsx'
 
@@ -89,7 +90,9 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section tone="sand">
+      <CompoundCompare />
+
+      <Section>
         <Eyebrow>{whoFor.eyebrow}</Eyebrow>
         <Heading>{whoFor.title}</Heading>
         <Lead className="mt-5">{whoFor.intro}</Lead>
@@ -107,7 +110,7 @@ export default function Home() {
         <p className="mt-8"><TextLink to={whoFor.link.to}>{whoFor.link.label} →</TextLink></p>
       </Section>
 
-      <Section>
+      <Section tone="sand">
         <Eyebrow>{how.eyebrow}</Eyebrow>
         <Heading>{how.title}</Heading>
         <Lead className="mt-5">{how.intro}</Lead>
