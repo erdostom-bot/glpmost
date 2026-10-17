@@ -55,7 +55,7 @@ export const how = {
   steps: [
     { title: 'Orvosi kérdőív', text: 'Néhány perc alatt kitöltöd az egészségügyi kérdőívet. Őszintén válaszolj – ez a biztonságod alapja.' },
     { title: 'Laboreredmények', text: 'Feltöltöd a friss laborleleteidet. Ha még nincs, megmondjuk, milyen vizsgálatokat érdemes elvégeztetni.' },
-    { title: 'Orvosi értékelés', text: 'Dr. Demeter Ágota átnézi az adataidat, majd egy videós (vagy személyes) beszélgetésen tisztázza a kérdéseket – az első felírás előtt ez mindig része a folyamatnak. Az orvos dönt a felírásról.' },
+    { title: 'Orvosi értékelés', text: 'Az orvos átnézi az adataidat, majd egy videós (vagy személyes) beszélgetésen tisztázza a kérdéseket – az első felírás előtt ez mindig része a folyamatnak. Az orvos dönt a felírásról.' },
     { title: 'Követés', text: 'A kezelés alatt rendszeres ellenőrzéssel követjük, hogyan haladsz és hogyan érzed magad.' },
   ],
   cta: { to: '/folyamat', label: 'A teljes folyamat' },
@@ -82,4 +82,46 @@ export const finalCta = {
   title: 'Szeretnéd tudni, szóba jöhet-e nálad?',
   text: 'Az orvosi kérdőív kitöltése nem kötelez semmire, és az orvos csak ezután dönt a folytatásról.', // TODO: a díjfizetés időpontját (kérdőív előtt/után) tisztázni
   button: { to: '/folyamat#kerdoiv', label: 'Kérdőív kitöltése' },
+}
+
+export const compare = {
+  eyebrow: 'Két hatóanyag, röviden',
+  title: 'Szemaglutid és tirzepatid: mit mutatnak a vizsgálatok?',
+  lead: 'A testsúlykezelésre engedélyezett két legismertebb hatóanyag. Az alábbi számok nagy, kontrollált vizsgálatok átlagai – cukorbetegség nélküli, elhízott felnőttekről, életmódi tanácsadás mellett.',
+  barLabels: { drug: 'Kezelés', placebo: 'Placebo' },
+  compounds: [
+    {
+      id: 'semaglutid',
+      name: 'Szemaglutid',
+      kind: 'GLP-1 receptor agonista · heti 1 injekció',
+      study: 'STEP 1 · 68 hét · 1 961 résztvevő',
+      drugPct: -14.9,
+      placeboPct: -2.4,
+      highlights: [
+        'A résztvevők fele legalább 15%-ot fogyott (placebo: 5%).',
+        'SELECT vizsgálat: szív-érrendszeri betegségben, cukorbetegség nélkül 20%-kal kisebb eséllyel következett be infarktus, stroke vagy szív-érrendszeri halál.',
+      ],
+      costLabel: 'Gyógyszertári ár havonta',
+    },
+    {
+      id: 'tirzepatid',
+      name: 'Tirzepatid',
+      kind: 'GIP + GLP-1 receptor agonista · heti 1 injekció',
+      study: 'SURMOUNT-1 · 72 hét · 2 539 résztvevő · legmagasabb adag',
+      drugPct: -20.9,
+      placeboPct: -3.1,
+      highlights: [
+        'A résztvevők több mint fele legalább 20%-ot fogyott (placebo: 3%).',
+        'SURMOUNT-5 közvetlen összehasonlítás: −20,2% a szemaglutid −13,7%-ával szemben (72 hét, nyílt vizsgálat).',
+      ],
+      costLabel: 'Gyógyszertári ár havonta',
+    },
+  ],
+  priceFraming:
+    'A szemaglutid a jelenlegi magyar gyógyszertári árakon kedvezőbb: havi költsége minden dózislépcsőn alacsonyabb, a magasabb adagoknál kevesebb mint fele a tirzepatidénak. Testsúlykezelésre egyik sem támogatott, mindkettőt teljes áron fizeted.',
+  priceCaveat:
+    'Az árak tájékoztatóak, patikánként eltérhetnek, és időnként változnak; egyes tirzepatid-árak még ellenőrzés alatt állnak. Az átlagos eredmény nem egyéni ígéret, és a két hatóanyag közül az orvos az egészségi állapotod alapján választ – az ár önmagában nem döntési szempont.',
+  link: { to: '/klinikai-informaciok', label: 'Vizsgálatok, kockázatok és források a klinikai oldalon' },
+  draftNote:
+    'Ez a szakasz hatóanyagot és árat nevez meg a főoldalon. A jogi átvilágítás (docs/compliance.md 1.1) szerint ez a burkolt gyógyszerreklám kockázatát növeli – élesítés előtt ügyvédi jóváhagyás kell.',
 }

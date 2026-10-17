@@ -1,6 +1,6 @@
 # GLPMost
 
-Magyar nyelvű tájékoztató oldal a GLP-1 alapú kezelésekről, orvosi háttérrel (Dr. Demeter Ágota). React + Vite + Tailwind, GitHub Pages-re telepítve.
+Magyar nyelvű tájékoztató oldal a GLP-1 alapú kezelésekről, orvosi háttérrel. React + Vite + Tailwind, GitHub Pages-re telepítve.
 
 Oldalak: Főoldal (`/`), Előnyök (`/elonyok`), A folyamat (`/folyamat`), Orvosaink (`/orvosaink`), Klinikai információk (`/klinikai-informaciok`), Adatkezelési tájékoztató (`/adatkezeles`).
 

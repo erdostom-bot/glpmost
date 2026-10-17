@@ -8,16 +8,16 @@ export const pageHero = {
 
 export const doctors = [
   {
-    id: 'demeter-agota',
-    name: 'Dr. Demeter Ágota',
-    initials: 'DÁ',
-    photo: null, // TODO: fotó (pl. '/glpmost/doctors/demeter-agota.jpg' a public/doctors mappából)
+    id: 'orvos-1',
+    name: 'Orvosunk', // TODO: az orvos neve, amint eldől
+    initials: 'Dr.',
+    photo: null, // TODO: fotó (pl. '/glpmost/doctors/neve.jpg' a public/doctors mappából)
     role: 'Orvos', // TODO: szakirány / szakvizsga
     credentials: ['Orvos (a pontos végzettségek és szakvizsgák kitöltendők)'], // TODO
     registration: '', // TODO: pecsétszám
     languages: ['magyar'], // TODO: ellenőrizendő
     bio: [
-      'Dr. Demeter Ágota a GLPMost orvosi vezetője. Az általa vezetett konzultációkon a hangsúly a személyre szabott mérlegelésen, a biztonságon és a hosszú távú egészségen van.',
+      'A GLPMost orvosa minden esetet egyénileg értékel. A konzultációkon a hangsúly a személyre szabott mérlegelésen, a biztonságon és a hosszú távú egészségen van.',
       'Szemléletében a GLP-1 alapú kezelés az életmódváltást támogató eszköz, nem önálló megoldás.',
     ],
     focus: ['Testsúlykezelés', 'Anyagcsere-egészség', 'Hosszú távú követés'], // TODO: ellenőrizendő
